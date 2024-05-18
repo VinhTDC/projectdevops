@@ -4,6 +4,8 @@ import './App.css';
 import { useEffect, useState } from "react";
 import MapEmbed from './components/MapEmbed';
 import Banner from './components/Banner';
+import About from './components/About';
+import Customer from './components/Customer';
 
 function App() {
   const [banner, setBanner] = useState([]);
@@ -19,9 +21,9 @@ function App() {
   }, []);
   return (
     <div className="App">
-      
-
       <Banner />
+      <Customer />
+      <About />
       <MapEmbed />
     </div>
   );
