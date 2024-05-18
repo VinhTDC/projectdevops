@@ -18,26 +18,27 @@ app.get("/", (req, res) => {
     res.send({ status: "OK", message: "I'm OK , I'm fine, Kinchana" });
 });
   
-app.get("/banner", cors(corsOptions), (req, res) => {
-    const banners = [
+app.get('/banners', (req, res) => {
+  const banners = [
       {
-        title: "Banner Kinchana 1",
-        description: "I'm OK , I'm fine, Kinchana ... ",
-        image: "/images/banner-img.png",
+          title: "Makeup <br />Kit 1",
+          description: "Ncididunt 1 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+          image: "/images/banner-img.png"
       },
       {
-        title: "Banner Kinchana 2",
-        description: "I'm OK , I'm fine, Kinchana ... ",
-        image: "/images/banner-img.png",
+          title: "Makeup <br />Kit 2",
+          description: "Ncididunt 2 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+          image: "/images/banner-img.png"
       },
       {
-        title: "Banner Kinchana 3",
-        description: "I'm OK , I'm fine, Kinchana ... ",
-        image: "/images/banner-img.png",
-      },
-    ];
-  
-    res.send(banners);
+          title: "Makeup <br />Kit 3",
+          description: "Ncididunt 3 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+          image: "/images/banner-img.png"
+      }
+  ];
+  res.send(banners);
+}); 
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
 });
-
 
