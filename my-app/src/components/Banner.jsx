@@ -1,6 +1,7 @@
-export default function Banner(props) {
-    const title = props.title || <>Default <br />Kit</>;
-    const description = props.description || "Default description";// "Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo"; // props.description;
+import React from 'react';
+
+
+function Banner() {
     return (
         <div className="banner_section layout_padding">
             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -9,12 +10,54 @@ export default function Banner(props) {
                         <div className="container">
                             <div className="row">
                                 <div className="col-sm-6">
-                                    <h1 className="banner_taital">{title}</h1>
-                                    <p className="banner_text">{description}</p>
+                                    <h1 className="banner_taital">Beauty <br />Kit</h1>
+                                    <p className="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
                                     <div className="read_bt"><a href="#">Buy Now</a></div>
                                 </div>
                                 <div className="col-sm-6">
-                                    <div className="banner_img"><img src="images/banner-img.png" /></div>
+                                    <div className="banner_img"><img src="images/banner-img.png" alt="Banner" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="carousel-item">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-6">
+                                    <h1 className="banner_taital">Beauty <br />Kit</h1>
+                                    <p className="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                                    <div className="read_bt"><a href="#">Buy Now</a></div>
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="banner_img"><img src="images/banner-img.png" alt="Banner" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="carousel-item">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-6">
+                                    <h1 className="banner_taital">Beauty <br />Kit</h1>
+                                    <p className="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                                    <div className="read_bt"><a href="#">Buy Now</a></div>
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="banner_img"><img src="images/banner-img.png" alt="Banner" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="carousel-item">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-6">
+                                    <h1 className="banner_taital">Beauty <br />Kit</h1>
+                                    <p className="banner_text">Ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                                    <div className="read_bt"><a href="#">Buy Now</a></div>
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="banner_img"><img src="images/banner-img.png" alt="Banner" /></div>
                                 </div>
                             </div>
                         </div>
@@ -24,3 +67,5 @@ export default function Banner(props) {
         </div>
     );
 }
+
+export default Banner;
