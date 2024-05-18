@@ -1,7 +1,8 @@
 import './App.css';
 
-import Banner from './Banner/banner'
+
 import { useEffect, useState } from "react";
+import MapEmbed from './components/MapEmbed';
 
 function App() {
   const [banner, setBanner] = useState([]);
@@ -17,7 +18,10 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Banner />
+      
+
+
+      <MapEmbed />
     </div>
   );
 }
