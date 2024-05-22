@@ -10,6 +10,7 @@ import Products from "./components/Products";
 function App() {
   const [banners, setBanners] = useState([]);
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
     fetch("http://localhost:3003/banners")
@@ -38,17 +39,13 @@ function App() {
       });
   }, []);
 
+  
+
   return (
     <div className="App">
-      {banners.map((banner) => {
-        return (
-          <Banner
-            title={banner.title}
-            description={banner.description}
-            image={banner.image}
-          />
-        );
-      })}
+      
+          <Banner banners={banners} />
+    
       <Products products={products} />
       <Customer />
       <About />

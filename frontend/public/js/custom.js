@@ -73,7 +73,7 @@ $(function () {
 		loop: true,
 		margin: 10,
 		autoplay: true,
-		autoplayTimeout: 3000,
+		autoplayTimeout: 1,
 		autoplayHoverPause: true
 	  });	  
 	});
@@ -91,7 +91,7 @@ $(function () {
 		dots: false,
 		navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
 		autoplay: true,
-		autoplayTimeout: 3000,
+		autoplayTimeout: 1,
 		autoplayHoverPause: true
 	  });	  
 	});

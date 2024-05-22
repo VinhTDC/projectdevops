@@ -14,8 +14,6 @@ export default function Products(props) {
         </div>
         <div className="product_section_2 layout_padding">
           <div className="row">
-            <div className="product_section_2 layout_padding">
-              <div className="row">
                 {props.products.map((product) => (
                   <ProductItem
                     key={product.id}
@@ -33,7 +31,5 @@ export default function Products(props) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 }

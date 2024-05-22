@@ -27,9 +27,33 @@ app.get("/", (req, res) => {
 app.get("/banners", (req, res) => {
   const banners = [
     {
-      title: "Makeup <br />Kit 1",
+      title: "Makeup <br /> Kit",
       description:
-        "Ncididunt 1 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+      image: "/images/banner-img.png",
+    },
+    {
+      title: "Makeup1 <br /> Kit",
+      description:
+        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+      image: "/images/banner-img.png",
+    },
+    {
+      title: "Makeup2 <br /> Kit",
+      description:
+        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+      image: "/images/banner-img.png",
+    },
+    {
+      title: "Makeup3 <br /> Kit",
+      description:
+        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+      image: "/images/banner-img.png",
+    },
+    {
+      title: "Makeup 4<br /> Kit",
+      description:
+        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
       image: "/images/banner-img.png",
     },
   ];

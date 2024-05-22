@@ -6,7 +6,6 @@ const name = props.name || "Beauty Brush";
     const price = props.price || 0;
     const id = props.id || 1;
   return (
-   
         <div key={id} className="col-lg-3 col-sm-6">
           <div className="product_box">
             <h4 className="bursh_text">{name}</h4>
