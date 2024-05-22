@@ -9,20 +9,23 @@ import Customer from './components/Customer';
 import Products from './components/Products';
 
 function App() {
-  const [banner, setBanner] = useState([]);
+  const [banners, setBanners] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3003/banner").then((res) => {
+    fetch("http://localhost:3003/banners").then((res) => {
       return res.json();
     }).then((data) => {
       console.log(data);
+      setBanners(data);
     }).catch((err) => {
       console.log(err);
-    })
+    });
   }, []);
   return (
     <div className="App">
-      <Banner />
+      {banners.map((banner) => {
+        return <Banner title={banner.title} description={banner.description} image={banner.image} />
+      })}
       <Products/>
       <Customer />
       <About />

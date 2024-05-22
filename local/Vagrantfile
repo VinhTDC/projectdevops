@@ -14,11 +14,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.box = "ubuntu/focal64"
     node.vm.hostname = "server-local"
     node.vm.network "private_network", ip: "172.16.3.3"
-    node.vm.synced_folder "../my-app/build", "/vagrant/html"
+    node.vm.network "forwarded_port", guest: 80, host: 8080
+    node.vm.synced_folder "../frontend/build", "/vagrant/html"
+    node.vm.synced_folder "../backend", "/vagrant/backend"
     node.vm.provision :shell, path: "./setup/install-env.sh"
     node.vm.provider "virtualbox" do |vb|
-      vb.memory = 2024
-      node.vm.box_download_insecure = true
+      vb.memory = 2048
     end
   end
 end
