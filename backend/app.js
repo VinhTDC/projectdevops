@@ -1,7 +1,13 @@
 const express = require("express"); // npm install express
 const cors = require("cors"); // npm install cors
 const app = express();
+const db = require("mysql2");
 const port = process.env.PORT || 3000; // Sửa cổng lắng nghe thành 3030
+const dbHost = process.env.DB_HOST || "localhost";
+const dbPort = process.env.DB_PORT || "3306";
+const dbUser = process.env.DB_USER || "admin";
+const dbPass = process.env.DB_PASS || "admin";
+const dbName = process.env.DB_NAME || "tdc-devops";
 
 const CORS_WHITELIST = [
   "http://localhost:3000",
@@ -16,6 +22,21 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+const connection = db.createConnection({
+  host: dbHost,
+  port: dbPort,
+  user: dbUser,
+  password: dbPass,
+  database: dbName,
+});
+
+connection.connect(function (err) {
+  if (err) throw err;
+  console.log(
+    `DB Connected! ${dbHost}:${dbPort}/${dbName} with User: ${dbUser}`
+  );
+});
+
 app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
@@ -25,72 +46,34 @@ app.get("/", (req, res) => {
 });
 
 app.get("/banners", (req, res) => {
-  const banners = [
-    {
-      title: "Makeup <br /> Kit",
-      description:
-        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-      image: "/images/banner-img.png",
-    },
-    {
-      title: "Makeup1 <br /> Kit",
-      description:
-        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-      image: "/images/banner-img.png",
-    },
-    {
-      title: "Makeup2 <br /> Kit",
-      description:
-        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-      image: "/images/banner-img.png",
-    },
-    {
-      title: "Makeup3 <br /> Kit",
-      description:
-        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-      image: "/images/banner-img.png",
-    },
-    {
-      title: "Makeup 4<br /> Kit",
-      description:
-        "Ncididunt 1232131 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo",
-      image: "/images/banner-img.png",
-    },
-  ];
-  res.send(banners);
+  connection.query("SELECT * FROM banner", (err, rows) => {
+    if (err) throw err;
+    // Mapping dữ liệu trả về từ DB table => Response model
+    const banners = rows.map((row) => {
+      return {
+        title: row.title,
+        description: row.description,
+        image: row.image,
+      };
+    });
+    res.send(banners);
+  });
 });
 app.get("/products", (req, res) => {
-  const products = [
-    {
-      id: 1,
-      name: "Beauty Brush",
-      description: "incididunt ut labore et dolore magna aliqua. Ut enim",
-      image: "images/img-1.png",
-      price: 30,
-    },
-    {
-      id: 2,
-      name: "Beauty Brush",
-      description: "incididunt ut labore et dolore magna aliqua. Ut enim",
-      image: "images/img-1.png",
-      price: 30,
-    },
-    {
-      id: 3,
-      name: "Beauty Brush",
-      description: "incididunt ut labore et dolore magna aliqua. Ut enim",
-      image: "images/img-1.png",
-      price: 30,
-    },
-    {
-      id: 4,
-      name: "Beauty Brush",
-      description: "incididunt ut labore et dolore magna aliqua. Ut enim",
-      image: "images/img-1.png",
-      price: 30,
-    },
-  ];
-  res.send(products);
+  connection.query("SELECT * FROM product", (err, rows) => {
+    if (err) throw err;
+    // Mapping dữ liệu trả về từ DB table => Response model
+    const products = rows.map((row) => {
+      return {
+        name: row.name,
+        price: row.price,
+        id: row.id,
+        description: row.description,
+        image: row.image,
+      };
+    });
+    res.send(products);
+  });
 });
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
