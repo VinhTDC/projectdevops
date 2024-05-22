@@ -9,6 +9,7 @@ import Products from "./components/Products";
 
 function App() {
   const [banners, setBanners] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3003/banners")
@@ -23,6 +24,20 @@ function App() {
         console.log(err);
       });
   }, []);
+  useEffect(() => {
+    fetch("http://localhost:3003/products")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setProducts(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="App">
       {banners.map((banner) => {
@@ -34,7 +49,7 @@ function App() {
           />
         );
       })}
-      <Products />
+      <Products products={products} />
       <Customer />
       <About />
       <MapEmbed />
