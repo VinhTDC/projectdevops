@@ -10,7 +10,7 @@ const name = props.name || "Beauty Brush";
           <div className="product_box">
             <h4 className="bursh_text">{name}</h4>
             <p className="lorem_text">{description}</p>
-            <img src={image} className="image_1" alt={name} />
+            <img src={"images/" + image} className="image_1" alt={name} />
             <div className="btn_main">
               <div className="buy_bt">
                 <ul>

@@ -2,13 +2,20 @@
 
 ## Serving backend via pm2
 # installs NVM (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 # export nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# download and install Node.js
+#nvm install 20
+# install pm2
+#npm install pm2@latest -g
+# run backend
+#cd /vagrant/backend
+#pm2 start app.js
 
 ## Serving backend via Docker
 # Add Docker's official GPG key:
@@ -28,15 +35,6 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 # Run docker container API
 sudo docker run -d --restart=always --name=devops-backend -p 127.0.0.1:8080:3000 hoangdntdc/devops-demo-backend
-
-
-# download and install Node.js
-nvm install 20
-# install pm2
-npm install pm2@latest -g
-# run backend
-cd /vagrant/backend
-pm2 start app.js
 
 # Install nginx and apply config
 sudo apt update

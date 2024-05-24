@@ -1,0 +1,1 @@
+docker build -t ten-image-cua-ban .

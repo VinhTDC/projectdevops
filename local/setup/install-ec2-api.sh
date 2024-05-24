@@ -16,7 +16,15 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Run docker container API
-sudo docker run -d --restart=always --name=devops-backend -p 0.0.0.0:80:3000 hoangdntdc/devops-demo-backend
+# Create docker network
+docker network create devops
 
-# GET http://<public_id>/banners
+# Run docker container API
+sudo docker run -d --name devops-backend -p 0.0.0.0:80:3000 \
+    -e PORT="3000" \
+    -e DB_HOST="3.104.74.196" \
+    -e DB_PORT="3306" \
+    -e DB_USER="admin" \
+    -e DB_PASS="admin" \
+    -e DB_NAME="tdc-devops" \
+    22211tt4921vinhnguyen/devops-backend:latest

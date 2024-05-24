@@ -24,7 +24,7 @@ export default function BannerItem(props) {
           </div>
           <div className="col-sm-6">
             <div className="banner_img">
-              <img src={image} />
+              <img src= {"images/" + image} />
             </div>
           </div>
         </div>

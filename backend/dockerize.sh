@@ -6,9 +6,21 @@ docker login -u 22211tt4921vinhnguyen
 
 
 # Run MySQL server
-docker run --name devops-db -e MYSQL_ROOT_PASSWORD="root12345" -e MYSQL_USER="admin" -e MYSQL_PASSWORD="admin" -e MYSQL_DATABASE="tdc-devops" -p 3306:3306 -d mysql:8.0
+docker run --name devops-db -e MYSQL_ROOT_PASSWORD="root12345" -e MYSQL_USER="admin" -e MYSQL_PASSWORD="admin" -e MYSQL_DATABASE="tdc-devops" -p 3306:3306 -d 22211tt4921vinhnguyen/mysq:1.0
+docker run --name devops-frontend -e REACT_APP_API_URL=http://localhost:8080 -p 3000:3000 22211tt4921vinhnguyen/frontend
+docker run -d --name devops-db -p 3306:3306 `
+    --hostname db.devops.tdc.edu.vn `
+    --network devops `
+    -v devops-db-volume:/var/lib/mysql `
+    -e MYSQL_ROOT_PASSWORD="root12345" `
+    -e MYSQL_USER="admin" `
+    -e MYSQL_PASSWORD="admin" `
+    -e MYSQL_DATABASE="tdc-devops" `
+    mysql:8.0
+    docker inspect devops-db
 
 
+docker exec -it devops-db mysql -u root -proot12345
 
 docker push 22211tt4921vinhnguyen/devops-backend:latest
 
@@ -44,3 +56,7 @@ docker logs devops-backend
 # - Biến môi trường cho project backend để dùng CONNECTION STRING kết nối MySQL
 # - Chạy container devops-db trên máy local, lấy IP của container
 # - Chạy container devops-demo-backend trên máy local, với biến môi trường DB_CONNECTION tạo bới IP của container devops-db
+
+docker build -t my-mysql-image -f mysql/Dockerfile .
+
+docker run --name devops-frontend -e REACT_APP_API_URL=http://localhost:8080 -p 3000:3000 22211tt4921vinhnguyen/frontend

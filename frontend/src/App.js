@@ -1,5 +1,4 @@
 import "./App.css";
-
 import { useEffect, useState } from "react";
 import MapEmbed from "./components/MapEmbed";
 import Banner from "./components/Banner";
@@ -10,42 +9,38 @@ import Products from "./components/Products";
 function App() {
   const [banners, setBanners] = useState([]);
   const [products, setProducts] = useState([]);
-  
+  const [isLoading, setIsLoading] = useState(true); // Thêm state loading
+  const [error, setError] = useState(null);       // Thêm state error
+  const apiUrl = process.env.REACT_APP_API_URL;
+  useEffect(() => {
+    const fetchBanners = fetch(`${apiUrl}/banners`).then(res => res.json());
+    const fetchProducts = fetch(`${apiUrl}/products`).then(res => res.json());
 
-  useEffect(() => {
-    fetch("http://localhost:3003/banners")
-      .then((res) => {
-        return res.json();
+    Promise.all([fetchBanners, fetchProducts])
+      .then(([bannerData, productData]) => {
+        setBanners(bannerData);
+        setProducts(productData);
       })
-      .then((data) => {
-        console.log(data);
-        setBanners(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("http://localhost:3003/products")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setProducts(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(handleError)                        // Xử lý lỗi tập trung
+      .finally(() => setIsLoading(false));      // Tắt loading khi hoàn thành
   }, []);
 
-  
+  const handleError = (error) => {
+    console.error(error);
+    setError("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
+  };
+
+  if (isLoading) {                                
+    return <div>Đang tải...</div>;
+  }
+
+  if (error) {                                   
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="App">
-      
-          <Banner banners={banners} />
-    
+      <Banner banners={banners} />
       <Products products={products} />
       <Customer />
       <About />
