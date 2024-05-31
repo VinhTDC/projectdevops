@@ -359,13 +359,10 @@ $(function () {
           $(this).toggleClass('active');
        });
      });
-
      /* Product slider 
      -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
      // optional
      $('#blogCarousel').carousel({
         interval: 5000
      });
-
-
 });
