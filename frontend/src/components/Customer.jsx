@@ -1,6 +1,5 @@
-import React from 'react';
-
-const Customer = () => {
+import CustomerItem from "./CustomerItem";
+export default function Customer(custo) {
     return (
         <div className="customer_section layout_padding">
           <div className="container">
@@ -11,45 +10,16 @@ const Customer = () => {
             </div>
             <div id="main_slider" className="carousel slide" data-ride="carousel">
               <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <div className="client_section_2">
-                    <div className="client_main">
-                      <div className="client_left">
-                        <div className="client_img"><img src="images/client-img.png" alt="Client"/></div>
-                      </div>
-                      <div className="client_right">
-                        <h3 className="name_text">Jonyro</h3>
-                        <p className="dolor_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation eu </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className="client_section_2">
-                    <div className="client_main">
-                      <div className="client_left">
-                        <div className="client_img"><img src="images/client-img.png" alt="Client"/></div>
-                      </div>
-                      <div className="client_right">
-                        <h3 className="name_text">Jonyro</h3>
-                        <p className="dolor_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation eu </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item">
-                  <div className="client_section_2">
-                    <div className="client_main">
-                      <div className="client_left">
-                        <div className="client_img"><img src="images/client-img.png" alt="Client"/></div>
-                      </div>
-                      <div className="client_right">
-                        <h3 className="name_text">Jonyro</h3>
-                        <p className="dolor_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation eu </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {custo.customer.map((customer) => (
+                  <CustomerItem
+                    key={customer.id}
+                    id={customer.id}
+                    fullname={customer.fullname}
+                    evaluate={customer.evaluate}
+                    image={customer.image}
+                  />
+                ))}
+                
               </div>
               <a className="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                 <i className="fa fa-angle-left"></i>
@@ -62,4 +32,6 @@ const Customer = () => {
         </div>
       );
 };
-export default Customer;
+
+
+
