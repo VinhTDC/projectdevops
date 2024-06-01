@@ -1,43 +1,89 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 3000; // Sửa cổng lắng nghe thành 3030
-const cors = require("cors");
+const express = require("express"); // npm install express
+const cors = require("cors"); // npm install cors
+const app = express();
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://54.252.237.102' // Cho phép truy cập từ origin cụ thể
+}));
+const db = require("mysql2");
+const port = process.env.PORT || 3030; // Sửa cổng lắng nghe thành 3030
+const dbHost = process.env.DB_HOST || "localhost";
+const dbPort = process.env.DB_PORT || "3306";
+const dbUser = process.env.DB_USER || "admin";
+const dbPass = process.env.DB_PASS || "admin";
+const dbName = process.env.DB_NAME || "tdc-devops";
 
+const CORS_WHITELIST = [
+  "http://localhost:3000",
+  "http://localhost:3003",
+  "http://localhost:3002",
+  "http://localhost:3006",
+  "http://localhost:8080",
+  "http://localhost",
+  
+];
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "*", // Accept all origins => Development
+  origin: CORS_WHITELIST, // Accept origins in whitelist => Production
   optionsSuccessStatus: 200,
 };
-
 app.use(cors(corsOptions));
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+const connection = db.createConnection({
+  host: dbHost,
+  port: dbPort,
+  user: dbUser,
+  password: dbPass,
+  database: dbName,
 });
+
+
+
+connection.connect(function (err) {
+  if (err) throw err;
+  console.log(
+    `DB Connected! ${dbHost}:${dbPort}/${dbName} with User: ${dbUser}`
+  );
+});
+
+
 
 app.get("/", (req, res) => {
-    res.send({ status: "OK", message: "I'm OK , I'm fine, Kinchana" });
+  res.send({
+    message: "Welcome to my API",
+  });
 });
-  
-app.get("/banner", cors(corsOptions), (req, res) => {
-    const banners = [
-      {
-        title: "Banner Kinchana 1",
-        description: "I'm OK , I'm fine, Kinchana ... ",
-        image: "/images/banner-img.png",
-      },
-      {
-        title: "Banner Kinchana 2",
-        description: "I'm OK , I'm fine, Kinchana ... ",
-        image: "/images/banner-img.png",
-      },
-      {
-        title: "Banner Kinchana 3",
-        description: "I'm OK , I'm fine, Kinchana ... ",
-        image: "/images/banner-img.png",
-      },
-    ];
-  
+
+app.get("/banners", (req, res) => {
+  connection.query("SELECT * FROM banner", (err, rows) => {
+    if (err) throw err;
+    // Mapping dữ liệu trả về từ DB table => Response model
+    const banners = rows.map((row) => {
+      return {
+        title: row.title,
+        description: row.description,
+        image: row.image,
+      };
+    });
     res.send(banners);
+  });
 });
-
-
+app.get("/products", (req, res) => {
+  connection.query("SELECT * FROM product", (err, rows) => {
+    if (err) throw err;
+    // Mapping dữ liệu trả về từ DB table => Response model
+    const products = rows.map((row) => {
+      return {
+        id: row.id,
+        name: row.name,
+        price: row.price,
+        description: row.description,
+        image: row.image,
+      };
+    });
+    res.send(products);
+  });
+});
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
