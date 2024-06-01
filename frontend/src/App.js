@@ -43,6 +43,7 @@ function App() {
 
   return (
     <div className="App">
+      <Headers />
       <Banner banners={banners} />
       <Products products={products} />
       <Customer customers={customers} />
