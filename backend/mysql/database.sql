@@ -14,7 +14,10 @@ CREATE TABLE banner (
  image VARCHAR(255) NOT NULL
 );
 
-INSERT INTO banner VALUES (1, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'banner-img.png');
+
+INSERT INTO banner VALUES (1, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'banner-img.png')
+
+
 
 INSERT INTO product VALUES
     (1, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-1.png'),
@@ -28,4 +31,4 @@ INSERT INTO product VALUES
     (9, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-9.png'),
     (10, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-10.png'),
     (11, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-11.png'),
-    (12, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-12.png');
+    (12, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-12.png')

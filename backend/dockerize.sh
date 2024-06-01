@@ -19,7 +19,7 @@ docker run -d --name devops-db -p 3306:3306 `
     mysql:8.0
     docker inspect devops-db
 
-
+//Vo dâtbase
 docker exec -it devops-db mysql -u root -proot12345
 
 docker push 22211tt4921vinhnguyen/devops-backend:latest
