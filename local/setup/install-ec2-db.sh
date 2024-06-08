@@ -23,14 +23,13 @@ docker network create devops
 docker volume create --driver local devops-db-volume
 
 docker run -d --name devops-db -p 3306:3306 \
-    --hostname db.devops.tdc.edu.vn \
     --network devops \
     -v devops-db-volume:/var/lib/mysql \
     -e MYSQL_ROOT_PASSWORD="root12345" \
     -e MYSQL_USER="admin" \
     -e MYSQL_PASSWORD="admin" \
     -e MYSQL_DATABASE="tdc-devops" \
-    22211tt4921vinhnguyen/mysq:1.0
+    22211tt4921vinhnguyen/devops-db
 
 
 
@@ -48,9 +47,19 @@ docker run -d --name devops-db-4 -p 3306:3306 `
 docker run -d --name devops-backend-4 -p 0.0.0.0:80:3000 `
     --network devops `
     -e PORT="3000" `
-    -e DB_HOST="db.devops.tdc.edu.vn" `
+    -e DB_HOST="172.17.0.2" `
     -e DB_PORT="3306" `
     -e DB_USER="admin" `
     -e DB_PASS="admin" `
     -e DB_NAME="tdc-devops" `
-    22211tt4921vinhnguyen/devops-backend:latest
+    22211tt4921vinhnguyen/devops-backend
+
+
+    docker run -d --name devops-db -p 3306:3306 `
+    --network devops `
+    -v devops-db-volume:/var/lib/mysql `
+    -e MYSQL_ROOT_PASSWORD="root12345" `
+    -e MYSQL_USER="admin" `
+    -e MYSQL_PASSWORD="admin" `
+    -e MYSQL_DATABASE="tdc-devops" `
+    22211tt4921vinhnguyen/deopvs-db

@@ -52,4 +52,4 @@ docker run -d --name devops-backend -p 0.0.0.0:80:3000 \
     -e DB_NAME="tdc-devops" \
     22211tt4921vinhnguyen/devops-backend:latest
 
-    docker run --name devops-frontend -e REACT_APP_API_URL=http://3.27.213.0:3000 -p 0.0.0.0:22:3000 22211tt4921vinhnguyen/frontend
+    docker run --name devops-frontend -e REACT_APP_API_URL=http://3.27.221.233:3000 -p 0.0.0.0:22:3000 22211tt4921vinhnguyen/devops-frontend
