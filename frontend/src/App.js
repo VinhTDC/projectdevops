@@ -5,6 +5,7 @@ import Banner from "./components/Banner";
 import About from "./components/About";
 import Customer from "./components/Customer";
 import Products from "./components/Products";
+import Header from "./components/Header";
 
 function App() {
   const [banners, setBanners] = useState([]);
@@ -15,6 +16,7 @@ function App() {
   useEffect(() => {
     const fetchBanners = fetch(`${apiUrl}/banners`).then(res => res.json());
     const fetchProducts = fetch(`${apiUrl}/products`).then(res => res.json());
+    
 
     Promise.all([fetchBanners, fetchProducts])
       .then(([bannerData, productData]) => {
@@ -40,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Banner banners={banners} />
       <Products products={products} />
       <Customer />

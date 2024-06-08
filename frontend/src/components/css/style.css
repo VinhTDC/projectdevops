@@ -937,3 +937,23 @@ button {
 .margin_top90 {
     margin-top: 90px;
 }
+.carousel-item {
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-item.active {
+    transform: translateX(0);
+  }
+  
+  .carousel-item-next,
+  .carousel-item-prev {
+    transform: translateX(100%);
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  .carousel-item-prev {
+    transform: translateX(-100%);
+  }
+  

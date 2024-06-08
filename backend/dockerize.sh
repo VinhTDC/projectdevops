@@ -60,3 +60,13 @@ docker logs devops-backend
 docker build -t my-mysql-image -f mysql/Dockerfile .
 
 docker run --name devops-frontend -e REACT_APP_API_URL=http://localhost:8080 -p 3000:3000 22211tt4921vinhnguyen/frontend
+
+docker run -d --name devops-db -p 3306:3306 `
+    --hostname db.devops.tdc.edu.vn `
+    --network devops `
+    -v devops-db-volume:/var/lib/mysql `
+    -e MYSQL_ROOT_PASSWORD="root12345" `
+    -e MYSQL_USER="admin" `
+    -e MYSQL_PASSWORD="admin" `
+    -e MYSQL_DATABASE="tdc-devops" `
+   22211tt4921vinhnguyen/devops-backend

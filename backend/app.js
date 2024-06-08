@@ -1,10 +1,11 @@
 const express = require("express"); // npm install express
 const cors = require("cors"); // npm install cors
 const app = express();
-const cors = require('cors');
-app.use(cors({
-  origin: 'http://54.252.237.102' // Cho phép truy cập từ origin cụ thể
-}));
+
+
+// app.use(cors({
+//   origin: 'http://54.252.237.102' // Cho phép truy cập từ origin cụ thể
+// }));
 const db = require("mysql2");
 const port = process.env.PORT || 3030; // Sửa cổng lắng nghe thành 3030
 const dbHost = process.env.DB_HOST || "localhost";
@@ -28,6 +29,12 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const connection = db.createConnection({
   host: dbHost,
@@ -82,6 +89,22 @@ app.get("/products", (req, res) => {
       };
     });
     res.send(products);
+  });
+});
+
+app.get("/customers", (req, res) => {
+  connection.query("SELECT * FROM customer", (err, rows) => {
+    if (err) throw err;
+    // Mapping dữ liệu trả về từ DB table => Response model
+    const customers = rows.map((row) => {
+      return {
+        id: row.id,
+        name: row.name,
+        description: row.description,
+        image: row.image,
+      };
+    });
+    res.send(customers);
   });
 });
 app.listen(port, () => {

@@ -14,7 +14,24 @@ CREATE TABLE banner (
  image VARCHAR(255) NOT NULL
 );
 
-INSERT INTO banner VALUES (1, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'banner-img.png');
+CREATE TABLE customer (
+ id INT PRIMARY KEY,
+ name VARCHAR(255) NOT NULL,
+ description TEXT NOT NULL,
+ image VARCHAR(255) NOT NULL
+);
+
+INSERT INTO banner VALUES 
+(1, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'banner-img.png'),
+(2, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'img-1.png'),
+(3, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'img-2.png'),
+(4, 'Makeup', 'incididunt ut labore et dolore magna aliqua. Ut enim', 'img-2.png');
+
+INSERT INTO customer VALUES 
+(1, 'Jonyro', 'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation eu', 'client-img.png'),
+(2, 'Jonyro', 'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation eu', 'client-img.png'),
+(3, 'Jonyro', 'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation eu', 'client-img.png');
+
 
 INSERT INTO product VALUES
     (1, 'Beauty Bursh', 'incididunt ut labore et dolore magna aliqua. Ut enim', 30, 'img-1.png'),
